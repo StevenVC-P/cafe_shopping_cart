@@ -58,6 +58,7 @@ public class Coffee extends Product {
             addOption = input.nextLine();
         }
         if (addOption.equals("yes")) option = true;
+        if (addOption.equals("no")) option = false;
 
         return option;
     }

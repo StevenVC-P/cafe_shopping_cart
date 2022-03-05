@@ -54,6 +54,7 @@ public class Cappuccino extends Product {
             addOption = input.nextLine();
         }
         if (addOption.equals("yes")) option = true;
+        if (addOption.equals("no")) option = false;
 
         return option;
     }
@@ -67,7 +68,6 @@ public class Cappuccino extends Product {
     Double calculateProductTotal(double price) {
         return price;
     }
-
 
     @Override
     Double calculateProductTotal(double price, int quantity, boolean peppermint, boolean whippedCream) {
