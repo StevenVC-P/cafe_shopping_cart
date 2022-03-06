@@ -1,5 +1,6 @@
 package com.perscholas;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CafeApp {
@@ -22,12 +23,13 @@ public class CafeApp {
         System.out.println("1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
 
         int choice = select.nextInt();
-        while ((choice<1) ||(choice>4)){
+
+        while ((choice < 1) || (choice > 4)) {
             System.out.println("Please select from this menu: \n1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
             choice = select.nextInt();
         }
 
-        while ((choice!=4)) {
+        while ((choice != 4)) {
             if (choice == 1) {
                 Scanner quantities = new Scanner(System.in);
 
@@ -39,7 +41,7 @@ public class CafeApp {
                         coffee.setMilk(coffee.addOptions(coffee.milk, "milk"));
                         coffee.setSugar(coffee.addOptions(coffee.sugar, "sugar"));
 
-                        if ((coffee.milk)&&(coffee.sugar)) {
+                        if ((coffee.milk) && (coffee.sugar)) {
                             System.out.println("Enjoy your " + coffee.name + ": " + coffee.description + " with milk & sugar.");
                         } else if (coffee.milk) {
                             System.out.println("Enjoy your " + coffee.name + ": " + coffee.description + " with milk.");
@@ -101,21 +103,21 @@ public class CafeApp {
                     }
                     System.out.println("subtotal: " + cappuccinoTotal);
                 }
-
-                System.out.println("Please select from the list below:");
-                System.out.println("1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
-
             }
+
+            System.out.println("Please select from the list below:");
+            System.out.println("1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
 
             choice = select.nextInt();
-            while ((choice<1) ||(choice>4)) {
-                System.out.println("Please select from this menu: \n1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
+            while ((choice < 1) || (choice > 4)) {
+                System.out.println("\nPlease select from this menu: \n1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
                 choice = select.nextInt();
             }
+
         }
 
         total = coffeeTotal + espressoTotal + cappuccinoTotal;
-        System.out.println("Total: " + total);
+        System.out.println("\nTotal: " + total);
 
     }
 
