@@ -7,12 +7,16 @@ public class Coffee extends Product {
     boolean milk;
     boolean sugar;
 
-    public boolean getMilk() {
-        return milk;
+    Coffee(String name, double price, String description, boolean milk, boolean sugar) {
+        super(name, price, description);
+        this.milk = milk;
+        this.sugar = sugar;
     }
 
-    public void setMilk(boolean milk) {
-        this.milk = milk;
+    public Coffee() {
+        super("Coffee", 2.00, "Hot mug of java");
+        this.milk = false;
+        this.sugar = false;
     }
 
     public boolean getSugar() {
@@ -23,30 +27,21 @@ public class Coffee extends Product {
         this.sugar = sugar;
     }
 
-    Coffee(String name, double price, String description) {
-        super();
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.milk = false;
-        this.sugar = false;
+    public boolean getMilk() {return milk;}
+
+    public void setMilk(boolean milk) {
+        this.milk = milk;
     }
 
-    Coffee(String name, double price, String description, boolean milk, boolean sugar) {
-        super();
-        this.name = name;
-        this.price = price;
-        this.description = description;
+
+    Coffee(boolean milk, boolean sugar) {
+        super("Coffee", 2.00, "Hot mug of java");
         this.milk = false;
         this.sugar = false;
-    }
-
-    public Coffee() {
-
     }
 
     @Override
-    Boolean addOptions(boolean option, String optionName) {
+    boolean addOptions(boolean option, String optionName) {
         Scanner input = new Scanner(System.in);
         System.out.printf("Would you like to add %s? 'Yes' or 'No'\n", optionName);
         String addOption = input.nextLine();
@@ -64,17 +59,17 @@ public class Coffee extends Product {
     }
 
     @Override
-    Boolean printOptions() {
-        return null;
+    boolean printOptions() {
+        return false;
     }
 
     @Override
-    Double calculateProductTotal(double price) {
+    double calculateProductTotal(double price) {
         return price* 1;
     }
 
     @Override
-    Double calculateProductTotal(double price, int quantity, boolean milk, boolean sugar) {
+    double calculateProductTotal(double price, int quantity, boolean milk, boolean sugar) {
         return price*quantity;
     }
 

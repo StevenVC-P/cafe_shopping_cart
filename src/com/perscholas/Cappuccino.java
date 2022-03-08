@@ -7,9 +7,7 @@ public class Cappuccino extends Product {
     boolean peppermint;
     boolean whippedCream;
 
-    public boolean getPeppermint() {
-        return peppermint;
-    }
+    public boolean getPeppermint() {return peppermint;}
 
     public void setPeppermint(boolean peppermint) {
         this.peppermint = peppermint;
@@ -23,11 +21,8 @@ public class Cappuccino extends Product {
         this.whippedCream = whippedCream;
     }
 
-    Cappuccino(String name, double price, String description) {
-        super();
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    Cappuccino() {
+        super("Cappuccino", 3.50, "A perfect balance of espresso, steamed milk and foam");
         this.peppermint = false;
         this.whippedCream = false;
     }
@@ -42,7 +37,7 @@ public class Cappuccino extends Product {
     }
 
     @Override
-    Boolean addOptions(boolean option, String optionName) {
+    boolean addOptions(boolean option, String optionName) {
         Scanner input = new Scanner(System.in);
         System.out.printf("Would you like to add %s? 'Yes' or 'No'\n", optionName);
         String addOption = input.nextLine();
@@ -60,17 +55,17 @@ public class Cappuccino extends Product {
     }
 
     @Override
-    Boolean printOptions() {
-        return null;
+    boolean printOptions() {
+        return false;
     }
 
     @Override
-    Double calculateProductTotal(double price) {
+    double calculateProductTotal(double price) {
         return price;
     }
 
     @Override
-    Double calculateProductTotal(double price, int quantity, boolean peppermint, boolean whippedCream) {
+    double calculateProductTotal(double price, int quantity, boolean peppermint, boolean whippedCream) {
         double total = price*quantity;
         if (peppermint) total += 2;
         if (whippedCream) total += 1;

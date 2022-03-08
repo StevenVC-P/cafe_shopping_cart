@@ -1,43 +1,50 @@
 package com.perscholas;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CafeApp {
     public static void main() {
 //        Coffee coffee1 = new Coffee();
 //        coffee1.setName("Coffee");
+        //initialing cart variables
+        final double salesTax = 2.01;
+        List<Product> orderList = new ArrayList<>();
+
         double total;
         double coffeeTotal = 0;
         double espressoTotal = 0;
         double cappuccinoTotal = 0;
 
-        Coffee coffee = new Coffee("Coffee", 2.00, "Hot mug of java");
-        Espresso espresso = new Espresso("Espresso", 3.00, "For a jolt of caffeine");
-        Cappuccino cappuccino = new Cappuccino("Cappuccino", 3.50, "A perfect balance of espresso, steamed milk and foam");
+        //initializing product classes
+        //Espresso espresso = new Espresso("Espresso", 3.00, "For a jolt of caffeine");
+        //Cappuccino cappuccino = new Cappuccino("Cappuccino", 3.50, "A perfect balance of espresso, steamed milk and foam");
 
+        //opening message for user
         Scanner select = new Scanner(System.in);
-
         System.out.println("Welcome to Baby Yoda's caffeine addiction!");
         System.out.println("Please select from the list below:");
         System.out.println("1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
 
         int choice = select.nextInt();
-
+        Product p;
+        //ensure any number chosen is between 1 and 4
         while ((choice < 1) || (choice > 4)) {
             System.out.println("Please select from this menu: \n1: Coffee\n2: Cappuccino\n3:Espresso\n4: Check Out");
             choice = select.nextInt();
         }
 
+        // for any choice besides 4, we go into the menu options for the selected product class
         while ((choice != 4)) {
             if (choice == 1) {
-                Scanner quantities = new Scanner(System.in);
-
                 System.out.println("How many coffees? ");
-                coffee.quantity = quantities.nextInt();
-
-                if (coffee.quantity > 0) {
-                    for (int i = 0; i < coffee.quantity; i++) {
+                Scanner quantities = new Scanner(System.in);
+                byte quantity = quantities.nextByte();
+                if (quantity > 0) {
+                    for (int i = 0; i < quantity; i++) {
+                        Coffee coffee = new Coffee();
                         coffee.setMilk(coffee.addOptions(coffee.milk, "milk"));
                         coffee.setSugar(coffee.addOptions(coffee.sugar, "sugar"));
 
@@ -47,12 +54,10 @@ public class CafeApp {
                             System.out.println("Enjoy your " + coffee.name + ": " + coffee.description + " with milk.");
                         } else if (coffee.sugar) {
                             System.out.println("Enjoy your " + coffee.name + ": " + coffee.description + " with sugar.");
-                        } else System.out.println(coffee.name + ": " + coffee.description);
-
-                        double subCoffeeTotal = coffee.calculateProductTotal(coffee.price);
-                        coffeeTotal += subCoffeeTotal;
+                        } else
+                            System.out.println(coffee.name + ": " + coffee.description);
+                        orderList.add(coffee);
                     }
-                    System.out.println("subtotal: " + coffeeTotal);
                 }
             }
 
@@ -60,10 +65,11 @@ public class CafeApp {
                 Scanner quantities = new Scanner(System.in);
                 System.out.println("\nHow many espresso? ");
 
-                espresso.quantity = quantities.nextInt();
-                if (espresso.quantity > 0) {
+                byte quantity = quantities.nextByte();
+                if (quantity > 0) {
 
-                    for (int i = 0; i < espresso.quantity; i++) {
+                    for (int i = 0; i < quantity; i++) {
+                        Espresso espresso = new Espresso();
                         espresso.setExtraShot(espresso.addOptions(espresso.extraShot, "extra shot"));
                         espresso.setMacchiato(espresso.addOptions(espresso.macchiato, "macchiato"));
 
@@ -74,20 +80,22 @@ public class CafeApp {
                         } else if (espresso.macchiato) {
                             System.out.println("Enjoy your " + espresso.name + ": " + espresso.description + " macchiato style.");
                         } else System.out.println(espresso.name + ": " + espresso.description);
-                        double subEspressoTotal = espresso.calculateProductTotal(espresso.price, espresso.quantity, espresso.extraShot, espresso.macchiato);
-                        espressoTotal += subEspressoTotal;
+//                        double subEspressoTotal = espresso.calculateProductTotal(espresso.price, espresso.quantity, espresso.extraShot, espresso.macchiato);
+//                        espressoTotal += subEspressoTotal;
+                        orderList.add(espresso);
                     }
-                    System.out.println("subtotal: " + espressoTotal);
+//                    System.out.println("subtotal: " + espressoTotal);
                 }
             }
 
             if (choice == 3) {
                 Scanner quantities = new Scanner(System.in);
                 System.out.println("\nHow many cappuccino? ");
-                cappuccino.quantity = quantities.nextInt();
-                if (cappuccino.quantity > 0) {
+                byte quantity = quantities.nextByte();
+                if (quantity > 0) {
 
-                    for (int i = 0; i < cappuccino.quantity; i++) {
+                    for (int i = 0; i < quantity; i++) {
+                        Cappuccino cappuccino = new Cappuccino();
                         cappuccino.setPeppermint(cappuccino.addOptions(cappuccino.peppermint, "peppermint"));
                         cappuccino.setWhippedCream(cappuccino.addOptions(cappuccino.whippedCream, "whipped cream"));
 
@@ -98,10 +106,11 @@ public class CafeApp {
                         } else if (cappuccino.whippedCream) {
                             System.out.println("Enjoy your " + cappuccino.name + ": " + cappuccino.description + " with whipped cream.");
                         } else System.out.println(cappuccino.name + ": " + cappuccino.description);
-                        double subCappuccinoTotal = cappuccino.calculateProductTotal(espresso.price, cappuccino.quantity, cappuccino.peppermint, cappuccino.whippedCream);
-                        cappuccinoTotal += subCappuccinoTotal;
+                        orderList.add(cappuccino);
+//                        double subCappuccinoTotal = cappuccino.calculateProductTotal(cappuccino.price, cappuccino.quantity, cappuccino.peppermint, cappuccino.whippedCream);
+//                        cappuccinoTotal += subCappuccinoTotal;
                     }
-                    System.out.println("subtotal: " + cappuccinoTotal);
+//                    System.out.println("subtotal: " + cappuccinoTotal);
                 }
             }
 
@@ -115,10 +124,10 @@ public class CafeApp {
             }
 
         }
-
+        System.out.println(orderList);
         total = coffeeTotal + espressoTotal + cappuccinoTotal;
         System.out.println("\nTotal: " + total);
 
     }
-
 }
+
