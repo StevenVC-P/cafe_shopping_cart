@@ -1,10 +1,15 @@
 package com.perscholas;
 
+import java.util.Scanner;
+
 public abstract class Product {
     String name;
     double price;
     String description;
     int quantity = 0;
+    boolean option1 = false;
+    boolean option2 = false;
+
 
     Product(String name, double price, String description) {
         this.name = name;
@@ -30,11 +35,11 @@ public abstract class Product {
 
     public void setQuantity(int quantity) {this.quantity = quantity;}
 
-    abstract boolean addOptions(boolean option, String optionName);
+    abstract boolean addOptions(Scanner input, boolean option, String optionName);
 
     abstract boolean printOptions();
 
     abstract double calculateProductTotal(double price);
 
-    abstract double calculateProductTotal(double price, int quantity, boolean extraShot, boolean macchiato);
+    abstract double calculateProductTotal(double price, boolean peppermint, boolean whippedCream);
 }

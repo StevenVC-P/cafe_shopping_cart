@@ -15,8 +15,8 @@ public class Coffee extends Product {
 
     public Coffee() {
         super("Coffee", 2.00, "Hot mug of java");
-        this.milk = false;
-        this.sugar = false;
+        this.milk = option1;
+        this.sugar = option2;
     }
 
     public boolean getSugar() {
@@ -24,13 +24,13 @@ public class Coffee extends Product {
     }
 
     public void setSugar(boolean sugar) {
-        this.sugar = sugar;
+        this.option1 = sugar;
     }
 
     public boolean getMilk() {return milk;}
 
     public void setMilk(boolean milk) {
-        this.milk = milk;
+        this.option2 = milk;
     }
 
 
@@ -41,8 +41,8 @@ public class Coffee extends Product {
     }
 
     @Override
-    boolean addOptions(boolean option, String optionName) {
-        Scanner input = new Scanner(System.in);
+    boolean addOptions(Scanner input, boolean option, String optionName) {
+
         System.out.printf("Would you like to add %s? 'Yes' or 'No'\n", optionName);
         String addOption = input.nextLine();
         addOption=addOption.toLowerCase();
@@ -69,7 +69,7 @@ public class Coffee extends Product {
     }
 
     @Override
-    double calculateProductTotal(double price, int quantity, boolean milk, boolean sugar) {
+    double calculateProductTotal(double price, boolean milk, boolean sugar) {
         return price*quantity;
     }
 

@@ -10,7 +10,7 @@ public class Cappuccino extends Product {
     public boolean getPeppermint() {return peppermint;}
 
     public void setPeppermint(boolean peppermint) {
-        this.peppermint = peppermint;
+        this.option1 = peppermint;
     }
 
     public boolean getWhippedCream() {
@@ -18,7 +18,7 @@ public class Cappuccino extends Product {
     }
 
     public void setWhippedCream(boolean whippedCream) {
-        this.whippedCream = whippedCream;
+        this.option2 = whippedCream;
     }
 
     Cappuccino() {
@@ -32,13 +32,12 @@ public class Cappuccino extends Product {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.peppermint = false;
-        this.whippedCream = false;
+        this.peppermint = option1;
+        this.whippedCream = option2;
     }
 
     @Override
-    boolean addOptions(boolean option, String optionName) {
-        Scanner input = new Scanner(System.in);
+    boolean addOptions(Scanner input, boolean option, String optionName) {
         System.out.printf("Would you like to add %s? 'Yes' or 'No'\n", optionName);
         String addOption = input.nextLine();
         addOption=addOption.toLowerCase();
@@ -65,8 +64,8 @@ public class Cappuccino extends Product {
     }
 
     @Override
-    double calculateProductTotal(double price, int quantity, boolean peppermint, boolean whippedCream) {
-        double total = price*quantity;
+    double calculateProductTotal(double price, boolean peppermint, boolean whippedCream) {
+        double total = price;
         if (peppermint) total += 2;
         if (whippedCream) total += 1;
         return total;

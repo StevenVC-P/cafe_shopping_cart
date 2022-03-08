@@ -12,7 +12,7 @@ public class Espresso extends Product {
     }
 
     public void setExtraShot(boolean extraShot) {
-        this.extraShot = extraShot;
+        this.option1 = extraShot;
     }
 
     public boolean getMacchiato() {
@@ -20,7 +20,7 @@ public class Espresso extends Product {
     }
 
     public void setMacchiato(boolean macchiato) {
-        this.macchiato = macchiato;
+        this.option2 = macchiato;
     }
 
     Espresso(String name, double price, String description) {
@@ -28,19 +28,19 @@ public class Espresso extends Product {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.extraShot = false;
-        this.macchiato = false;
+        this.extraShot = option1;
+        this.macchiato = option2;
     }
 
     Espresso() {
         super("Espresso", 3.00, "For a jolt of caffeine");
-        this.extraShot = false;
-        this.macchiato = false;
+        this.option1 = false;
+        this.option2 = false;
     }
 
     @Override
-    boolean addOptions(boolean option, String optionName) {
-        Scanner input = new Scanner(System.in);
+    boolean addOptions(Scanner input, boolean option, String optionName) {
+
         System.out.printf("Would you like to add %s? 'Yes' or 'No'\n", optionName);
         String addOption = input.nextLine();
         addOption=addOption.toLowerCase();
@@ -67,8 +67,8 @@ public class Espresso extends Product {
     }
 
     @Override
-    double calculateProductTotal(double price, int quantity, boolean extraShot, boolean macchiato) {
-        double total = price*quantity;
+    double calculateProductTotal(double price, boolean extraShot, boolean macchiato) {
+        double total = price;
         if (extraShot) total += 2;
         if (macchiato) total += 1;
         return total;
